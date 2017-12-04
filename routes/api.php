@@ -18,10 +18,11 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 //Auth::routes();
+Route::post('/login', 'AuthController@authenticate');
 
 Route::group(['middleware' => ['jwt.auth']], function() {
-	Route::post('/login', 'authenticate@userAuth');
-	Route::resource('files','FilesController');
+	Route::resource('users', 'UserController');
+	Route::resource('files', 'FilesController');
 });
 
 

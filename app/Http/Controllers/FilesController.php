@@ -93,7 +93,7 @@ class FilesController extends Controller
         if ($user_type_id == '1') {
             $file = Files::where('file_name', 'LIKE', "%{$search}%")->get();
         } else {
-            $file = Files::select('files.file_name', 'files.avaliability')
+            $file = Files::select('files.id', 'files.file_name', 'files.avaliability')
                         ->join('access', 'files.id', '=', 'access.id_file')
                         ->join('user_types', 'access.id_user_types', '=', 'user_types.id') 
                         ->where('user_types.id','=', $user_type_id)
